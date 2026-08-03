@@ -1,0 +1,124 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Novembro Azul 2026</title><style>
+:root{
+  --brand:#c51f2a; --text:#1f2937; --muted:#6b7280; --bg:#f7f7f8;
+  --card:#fff; --line:#e5e7eb; --shadow:0 18px 50px rgba(15,23,42,.10);
+  --radius:24px; --max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{width:min(var(--max),calc(100% - 32px));margin:auto}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-weight:850;letter-spacing:-.03em;font-size:1.15rem}
+.brand span{color:var(--brand)}
+.navlinks{display:flex;gap:22px;align-items:center;font-size:.95rem;color:#374151}
+.navlinks a:hover{color:var(--brand)}
+.menu-btn{display:none;border:0;background:transparent;font-size:1.5rem}
+.hero{padding:86px 0 64px;background:radial-gradient(circle at 12% 10%,rgba(197,31,42,.13),transparent 34%),radial-gradient(circle at 88% 15%,rgba(245,158,11,.18),transparent 30%),linear-gradient(180deg,#fff 0%,#fbfbfc 100%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.82rem;font-weight:750;color:#7f1d1d}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--brand)}
+h1{font-size:clamp(3rem,7vw,6.4rem);line-height:.94;letter-spacing:-.065em;margin:18px 0 22px}
+h1 span{color:var(--brand)}
+h2{font-size:clamp(2rem,4vw,3.3rem);line-height:1.05;letter-spacing:-.045em;margin:8px 0}
+h3{letter-spacing:-.025em}
+.hero p{font-size:1.18rem;color:#4b5563;max-width:720px}
+.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:14px;font-weight:800;border:1px solid transparent;transition:.2s}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 12px 28px rgba(197,31,42,.22)}
+.btn-light{background:#fff;border-color:var(--line)}
+.btn:hover{transform:translateY(-2px)}
+.hero-visual{background:linear-gradient(145deg,#fff,#f3f4f6);border:1px solid var(--line);border-radius:32px;box-shadow:var(--shadow);padding:26px;min-height:420px;display:grid;place-items:center}
+.orbit{width:min(380px,100%);aspect-ratio:1;border-radius:50%;background:conic-gradient(#facc15 0 25%,#ec4899 25% 50%,#2563eb 50% 75%,#f97316 75%);position:relative;box-shadow:0 20px 50px rgba(15,23,42,.15)}
+.orbit::after{content:"CUIDAR FAZ PARTE\A DA NOSSA CULTURA";white-space:pre;text-align:center;position:absolute;inset:22%;display:grid;place-items:center;border-radius:50%;background:#fff;font-weight:900;line-height:1.15;letter-spacing:-.03em;font-size:1.32rem;padding:18px}
+.month{position:absolute;color:#fff;font-weight:900;font-size:.75rem}
+.m1{top:11%;left:42%}.m2{top:47%;right:5%}.m3{bottom:11%;left:41%}.m4{top:47%;left:4%}
+section{padding:72px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:28px}
+.kicker{font-size:.8rem;letter-spacing:.13em;text-transform:uppercase;font-weight:900;color:var(--brand)}
+.section-head p{max-width:650px;color:var(--muted);margin:0}
+.spotlight{--accent:#facc15;--soft:#fff5b5;position:relative;overflow:hidden;border-radius:30px;background:linear-gradient(135deg,var(--soft),#fff 55%);border:1px solid rgba(17,24,39,.07);box-shadow:var(--shadow);display:grid;grid-template-columns:1.05fr .95fr;min-height:410px}
+.spot-content{padding:48px;display:flex;flex-direction:column;justify-content:center}
+.badge{width:max-content;padding:7px 11px;border-radius:999px;background:#111827;color:#fff;font-size:.77rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+.spotlight h3{font-size:clamp(2.4rem,5vw,4.6rem);line-height:.96;letter-spacing:-.055em;margin:18px 0 12px}
+.spotlight p{font-size:1.08rem;color:#4b5563}
+.spot-art{display:grid;place-items:center;padding:30px;background:radial-gradient(circle,var(--accent),transparent 58%)}
+.symbol{font-size:9rem;filter:drop-shadow(0 22px 35px rgba(0,0,0,.14))}
+.controls{position:absolute;right:18px;bottom:18px;display:flex;gap:8px}
+.controls button{width:38px;height:38px;border-radius:50%;border:1px solid rgba(17,24,39,.12);background:#fff;cursor:pointer;font-size:1.2rem}
+.timeline,.campaign-grid,.objective-grid{display:grid;gap:18px}
+.timeline{grid-template-columns:repeat(4,1fr)}
+.campaign-grid{grid-template-columns:repeat(4,1fr)}
+.objective-grid{grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 10px 30px rgba(15,23,42,.05)}
+.time-card{padding:22px;border-radius:20px;background:#fff;border:1px solid var(--line);position:relative;overflow:hidden}
+.time-card::before{content:"";position:absolute;inset:0 0 auto;height:7px;background:var(--c)}
+.time-card strong{display:block;margin-top:8px}
+.time-card span{color:var(--muted);font-size:.92rem}
+.campaign{min-height:290px;border-radius:24px;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;border:1px solid rgba(17,24,39,.08);box-shadow:0 10px 30px rgba(15,23,42,.06);transition:.2s}
+.campaign:hover{transform:translateY(-4px)}
+.campaign::before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.43);top:-55px;right:-45px}
+.campaign h3{font-size:1.85rem;line-height:1.05;margin:8px 0}
+.campaign p{margin:0 0 18px;color:#374151}
+.month-tag{font-weight:900;text-transform:uppercase;font-size:.78rem;letter-spacing:.1em}
+.yellow{background:linear-gradient(145deg,#facc15,#fff3a6)}
+.pink{background:linear-gradient(145deg,#f472b6,#ffe1ef)}
+.blue{background:linear-gradient(145deg,#60a5fa,#dbeafe)}
+.orange{background:linear-gradient(145deg,#fb923c,#ffedd5)}
+.dark-panel{background:#111827;color:#fff;border-radius:30px;padding:42px}
+.dark-panel p,.dark-panel li{color:#d1d5db}
+.page-hero{padding:78px 0 54px}
+.page-hero.yellow-bg{background:linear-gradient(135deg,#fff8c5,#fff)}
+.page-hero.pink-bg{background:linear-gradient(135deg,#ffe2ef,#fff)}
+.page-hero.blue-bg{background:linear-gradient(135deg,#dbeafe,#fff)}
+.page-hero.orange-bg{background:linear-gradient(135deg,#ffedd5,#fff)}
+.content-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.schedule .row{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:12px}
+.faq summary{font-weight:800;cursor:pointer}
+footer{padding:34px 0;border-top:1px solid var(--line);background:#fff;color:var(--muted)}
+.footer-row{display:flex;justify-content:space-between;gap:20px}
+@media(max-width:960px){
+  .hero-grid,.spotlight,.content-grid{grid-template-columns:1fr}
+  .timeline,.campaign-grid,.objective-grid{grid-template-columns:repeat(2,1fr)}
+  .navlinks{display:none}
+  .menu-btn{display:block}
+  .navlinks.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;align-items:flex-start;padding:20px 16px;background:#fff;border-bottom:1px solid var(--line)}
+}
+@media(max-width:640px){
+  h1{font-size:3.6rem}
+  .timeline,.campaign-grid,.objective-grid,.pillars{grid-template-columns:1fr}
+  .spot-content{padding:30px}
+  .schedule .row{grid-template-columns:1fr;gap:4px}
+  .footer-row{flex-direction:column}
+}
+</style></head><body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="index.html">Jornada do <span>Cuidado</span></a>
+    <nav class="navlinks" id="navlinks">
+      <a href="index.html">Home</a>
+      <a href="setembro-amarelo.html">Setembro Amarelo</a>
+      <a href="outubro-rosa.html">Outubro Rosa</a>
+      <a href="novembro-azul.html">Novembro Azul</a>
+      <a href="dezembro-laranja.html">Dezembro Laranja</a>
+    </nav>
+    <button class="menu-btn" aria-label="Abrir menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main><section class="page-hero blue-bg"><div class="container"><div class="eyebrow"><span class="dot" style="background:#2563eb"></span> Novembro de 2026</div><h1>Novembro Azul</h1><p style="font-size:1.18rem;color:#4b5563">Cuidar da saúde também é atitude.</p></div></section>
+<section><div class="container"><div class="card" style="text-align:center;padding:64px 28px"><div style="font-size:4rem">◉</div><h2>Landing page em desenvolvimento</h2><p>Esta página já está conectada à Home da Jornada do Cuidado e preparada para receber o conteúdo definitivo da campanha.</p><div class="actions" style="justify-content:center"><a class="btn btn-primary" href="index.html">Voltar para a Home</a></div></div></div></section>
+</main>
+<footer>
+  <div class="container footer-row">
+    <strong>Jornada do Cuidado 2026</strong>
+    <span>Cuidar faz parte da nossa cultura.</span>
+  </div>
+</footer>
+</body></html>
