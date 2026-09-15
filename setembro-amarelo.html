@@ -578,6 +578,12 @@ footer{padding:38px 0;background:#111827;color:#d8dee8}
 .event-option-date{font-size:2rem;line-height:1;font-weight:950;letter-spacing:-.045em;color:var(--ink)}
 .event-option-time{display:inline-flex;align-items:center;justify-content:center;min-width:86px;padding:10px 12px;border-radius:999px;background:var(--ink);color:#fff;font-size:1rem;font-weight:900;white-space:nowrap}
 .event-date-hint{margin:16px 2px 0;font-size:.82rem;line-height:1.35;color:#5f4a00;font-weight:700}
+.confetti-piece{position:fixed;z-index:9999;width:10px;height:16px;border-radius:2px;pointer-events:none;animation:confetti-burst 1.15s cubic-bezier(.12,.72,.24,1) forwards}
+@keyframes confetti-burst{
+  0%{transform:translate(-50%,-50%) rotate(0deg);opacity:1}
+  100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(var(--r));opacity:0}
+}
+@media(prefers-reduced-motion:reduce){.confetti-piece{display:none}}
 @media(max-width:980px){
   .event-wrap{grid-template-columns:1fr}
   .event-date{min-height:auto;padding:30px}
@@ -766,7 +772,7 @@ footer{padding:38px 0;background:#111827;color:#d8dee8}
               </div>
               <div class="event-option">
                 <span class="event-option-date">18/09</span>
-                <span class="event-option-time">9h30</span>
+                <span class="event-option-time">9h</span>
               </div>
             </div>
           </div>
@@ -774,8 +780,7 @@ footer{padding:38px 0;background:#111827;color:#d8dee8}
         <div class="event-content">
           <h3>Como administrar o stress no ambiente de trabalho</h3>
           <p>Participe da palestra especial sobre como administrar o stress no ambiente de trabalho.</p>
-          <a class="cta cta-primary" href="#" aria-label="Link de acesso à palestra">Link de acesso</a>
-          <p class="note">O endereço da transmissão deverá ser inserido neste botão.</p>
+          <a class="cta cta-primary" href="https://meet.google.com/oqa-bjtc-sqv" target="_blank" rel="noopener noreferrer" aria-label="Link de acesso à palestra">Link de acesso</a>
         </div>
       </article>
     </div>
@@ -806,6 +811,32 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+document.querySelectorAll('a[href="https://meet.google.com/oqa-bjtc-sqv"]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top + rect.height / 2;
+    const colors = ['#ffcc25', '#172033', '#ffffff', '#f28c28', '#4aa8d8'];
+
+    for (let i = 0; i < 70; i += 1) {
+      const piece = document.createElement('span');
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 90 + Math.random() * 230;
+      piece.className = 'confetti-piece';
+      piece.style.left = `${originX}px`;
+      piece.style.top = `${originY}px`;
+      piece.style.backgroundColor = colors[i % colors.length];
+      piece.style.setProperty('--x', `${Math.cos(angle) * distance}px`);
+      piece.style.setProperty('--y', `${Math.sin(angle) * distance + 130}px`);
+      piece.style.setProperty('--r', `${Math.random() * 900 - 450}deg`);
+      piece.style.animationDelay = `${Math.random() * 0.12}s`;
+      document.body.appendChild(piece);
+      piece.addEventListener('animationend', () => piece.remove(), { once: true });
+    }
+  });
+});
 </script>
 </body>
 </html>
